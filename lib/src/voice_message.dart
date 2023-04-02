@@ -117,10 +117,10 @@ class _VoiceMessageState extends State<VoiceMessage>
   Widget build(BuildContext context) => _sizerChild(context);
 
   Container _sizerChild(BuildContext context) => Container(
+        width: widget.isFullSCreen ? double.maxFinite : null,
         padding: EdgeInsets.symmetric(horizontal: .8.w()),
-        constraints: widget.isFullSCreen
-            ? const BoxConstraints(maxWidth: double.maxFinite)
-            : BoxConstraints(maxWidth: 100.w() * .8),
+        constraints:
+            widget.isFullSCreen ? null : BoxConstraints(maxWidth: 100.w() * .8),
         decoration: BoxDecoration(
           borderRadius: widget.isFullSCreen
               ? null
