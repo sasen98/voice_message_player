@@ -35,7 +35,7 @@ class VoiceMessage extends StatefulWidget {
     this.contactPlayIconBgColor = Colors.grey,
     this.meFgColor = const Color(0xffffffff),
     this.played = false,
-    this.onPlay,
+    this.onPlay, this.isFullSCreen = false,
   }) : super(key: key);
 
   final String? audioSrc;
@@ -44,6 +44,7 @@ class VoiceMessage extends StatefulWidget {
   final bool showDuration;
   final List<double>? waveForm;
   final double radius;
+  final bool isFullSCreen;
 
   final int noiseCount;
   final Color meBgColor,
@@ -116,9 +117,9 @@ class _VoiceMessageState extends State<VoiceMessage>
 
   Container _sizerChild(BuildContext context) => Container(
         padding: EdgeInsets.symmetric(horizontal: .8.w()),
-        constraints: BoxConstraints(maxWidth: 100.w() * .8),
+        constraints: widget.isFullSCreen? null: BoxConstraints(maxWidth: 100.w() * .8),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
+          borderRadius:widget.isFullSCreen? null: BorderRadius.only(
             topLeft: Radius.circular(widget.radius),
             bottomLeft: widget.me
                 ? Radius.circular(widget.radius)
