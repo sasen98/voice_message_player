@@ -35,7 +35,8 @@ class VoiceMessage extends StatefulWidget {
     this.contactPlayIconBgColor = Colors.grey,
     this.meFgColor = const Color(0xffffffff),
     this.played = false,
-    this.onPlay, this.isFullSCreen = false,
+    this.onPlay,
+    this.isFullSCreen = false,
   }) : super(key: key);
 
   final String? audioSrc;
@@ -117,18 +118,22 @@ class _VoiceMessageState extends State<VoiceMessage>
 
   Container _sizerChild(BuildContext context) => Container(
         padding: EdgeInsets.symmetric(horizontal: .8.w()),
-        constraints: widget.isFullSCreen? null: BoxConstraints(maxWidth: 100.w() * .8),
+        constraints: widget.isFullSCreen
+            ? const BoxConstraints(maxWidth: double.maxFinite)
+            : BoxConstraints(maxWidth: 100.w() * .8),
         decoration: BoxDecoration(
-          borderRadius:widget.isFullSCreen? null: BorderRadius.only(
-            topLeft: Radius.circular(widget.radius),
-            bottomLeft: widget.me
-                ? Radius.circular(widget.radius)
-                : const Radius.circular(4),
-            bottomRight: !widget.me
-                ? Radius.circular(widget.radius)
-                : const Radius.circular(4),
-            topRight: Radius.circular(widget.radius),
-          ),
+          borderRadius: widget.isFullSCreen
+              ? null
+              : BorderRadius.only(
+                  topLeft: Radius.circular(widget.radius),
+                  bottomLeft: widget.me
+                      ? Radius.circular(widget.radius)
+                      : const Radius.circular(4),
+                  bottomRight: !widget.me
+                      ? Radius.circular(widget.radius)
+                      : const Radius.circular(4),
+                  topRight: Radius.circular(widget.radius),
+                ),
           color: widget.me ? widget.meBgColor : widget.contactBgColor,
         ),
         child: Padding(
