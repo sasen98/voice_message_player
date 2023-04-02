@@ -114,7 +114,9 @@ class _VoiceMessageState extends State<VoiceMessage>
   }
 
   @override
-  Widget build(BuildContext context) => _sizerChild(context);
+  Widget build(BuildContext context) => _sizerChild(
+        context,
+      );
 
   Container _sizerChild(BuildContext context) => Container(
         width: widget.isFullSCreen ? double.maxFinite : null,
@@ -143,7 +145,7 @@ class _VoiceMessageState extends State<VoiceMessage>
             children: [
               _playButton(context),
               SizedBox(width: 3.w()),
-              _durationWithNoise(context),
+              _durationWithNoise(context, widget.isFullSCreen),
               SizedBox(width: 2.2.w()),
 
               /// x2 button will be added here.
@@ -186,10 +188,10 @@ class _VoiceMessageState extends State<VoiceMessage>
         ),
       );
 
-  Widget _durationWithNoise(BuildContext context) => Column(
+  Widget _durationWithNoise(BuildContext context, bool isFullScreen) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _noise(context),
+          _noise(context, isFullScreen),
           SizedBox(height: .3.w()),
           Row(
             children: [
@@ -228,7 +230,7 @@ class _VoiceMessageState extends State<VoiceMessage>
       );
 
   /// Noise widget of audio.
-  Widget _noise(BuildContext context) {
+  Widget _noise(BuildContext context, bool isFullScreen) {
     final ThemeData theme = Theme.of(context);
     final newTHeme = theme.copyWith(
       sliderTheme: SliderThemeData(
@@ -243,7 +245,7 @@ class _VoiceMessageState extends State<VoiceMessage>
       data: newTHeme,
       child: SizedBox(
         height: 6.5.w(),
-        width: noiseWidth,
+        width: isFullScreen ? 48.w() : noiseWidth,
         child: Stack(
           clipBehavior: Clip.hardEdge,
           children: [
