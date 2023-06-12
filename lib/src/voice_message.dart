@@ -69,7 +69,7 @@ class _VoiceMessageState extends State<VoiceMessage>
     with SingleTickerProviderStateMixin {
   late StreamSubscription stream;
   final AudioPlayer _player = AudioPlayer();
-  final double maxNoiseHeight = 6.w(), noiseWidth = 28.5.w();
+  late double maxNoiseHeight, noiseWidth;
   Duration? _audioDuration;
   double maxDurationForSlider = .0000001;
   bool _isPlaying = false, x2 = false, _audioConfigurationDone = false;
@@ -114,15 +114,20 @@ class _VoiceMessageState extends State<VoiceMessage>
   }
 
   @override
-  Widget build(BuildContext context) => _sizerChild(
-        context,
-      );
+  Widget build(BuildContext context) {
+    maxNoiseHeight = 6.w(context);
+    noiseWidth = 28.5.w(context);
+    return _sizerChild(
+      context,
+    );
+  }
 
   Container _sizerChild(BuildContext context) => Container(
         width: widget.isFullSCreen ? double.maxFinite : null,
-        padding: EdgeInsets.symmetric(horizontal: .8.w()),
-        constraints:
-            widget.isFullSCreen ? null : BoxConstraints(maxWidth: 100.w() * .8),
+        padding: EdgeInsets.symmetric(horizontal: .8.w(context)),
+        constraints: widget.isFullSCreen
+            ? null
+            : BoxConstraints(maxWidth: 100.w(context) * .8),
         decoration: BoxDecoration(
           borderRadius: widget.isFullSCreen
               ? null
@@ -139,14 +144,15 @@ class _VoiceMessageState extends State<VoiceMessage>
           color: widget.me ? widget.meBgColor : widget.contactBgColor,
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 4.w(), vertical: 2.8.w()),
+          padding: EdgeInsets.symmetric(
+              horizontal: 4.w(context), vertical: 2.8.w(context)),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               _playButton(context),
-              SizedBox(width: 3.w()),
+              SizedBox(width: 3.w(context)),
               _durationWithNoise(context, widget.isFullSCreen),
-              SizedBox(width: 2.2.w()),
+              SizedBox(width: 2.2.w(context)),
 
               /// x2 button will be added here.
               // _speed(context),
@@ -161,8 +167,8 @@ class _VoiceMessageState extends State<VoiceMessage>
             shape: BoxShape.circle,
             color: widget.me ? widget.meFgColor : widget.contactPlayIconBgColor,
           ),
-          width: 10.w(),
-          height: 10.w(),
+          width: 10.w(context),
+          height: 10.w(context),
           child: InkWell(
             onTap: () =>
                 !_audioConfigurationDone ? null : _changePlayingStatus(),
@@ -182,7 +188,7 @@ class _VoiceMessageState extends State<VoiceMessage>
                     color: widget.me
                         ? widget.mePlayIconColor
                         : widget.contactPlayIconColor,
-                    size: 5.w(),
+                    size: 5.w(context),
                   ),
           ),
         ),
@@ -192,18 +198,18 @@ class _VoiceMessageState extends State<VoiceMessage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _noise(context, isFullScreen),
-          SizedBox(height: .3.w()),
+          SizedBox(height: .3.w(context)),
           Row(
             children: [
               /// show played badge
               if (!widget.played)
-                Widgets.circle(context, 1.5.w(),
+                Widgets.circle(context, 1.5.w(context),
                     widget.me ? widget.meFgColor : widget.contactCircleColor),
 
               /// show duration
               if (widget.showDuration)
                 Padding(
-                  padding: EdgeInsets.only(left: 1.2.w()),
+                  padding: EdgeInsets.only(left: 1.2.w(context)),
                   child: Text(
                     widget.formatDuration!(widget.duration!),
                     style: TextStyle(
@@ -213,7 +219,7 @@ class _VoiceMessageState extends State<VoiceMessage>
                     ),
                   ),
                 ),
-              SizedBox(width: 1.5.w()),
+              SizedBox(width: 1.5.w(context)),
               SizedBox(
                 width: 50,
                 child: Text(
@@ -244,8 +250,8 @@ class _VoiceMessageState extends State<VoiceMessage>
     return Theme(
       data: newTHeme,
       child: SizedBox(
-        height: 6.5.w(),
-        width: isFullScreen ? 48.w() : noiseWidth,
+        height: 6.5.w(context),
+        width: isFullScreen ? 48.w(context) : noiseWidth,
         child: Stack(
           clipBehavior: Clip.hardEdge,
           children: [
@@ -259,7 +265,7 @@ class _VoiceMessageState extends State<VoiceMessage>
                     left: _controller!.value,
                     child: Container(
                       width: noiseWidth,
-                      height: 6.w(),
+                      height: 6.w(context),
                       color: widget.me
                           ? widget.meBgColor.withOpacity(.4)
                           : widget.contactBgColor.withOpacity(.35),

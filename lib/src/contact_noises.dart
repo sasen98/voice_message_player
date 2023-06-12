@@ -16,10 +16,11 @@ class ContactNoise extends StatelessWidget {
   }
 
   Widget _singleNoise(BuildContext context) {
-    final double height = 5.74.w() * math.Random().nextDouble() + .26.w();
+    final double height =
+        5.74.w(context) * math.Random().nextDouble() + .26.w(context);
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: .2.w()),
-      width: .56.w(),
+      margin: EdgeInsets.symmetric(horizontal: .2.w(context)),
+      width: .56.w(context),
       height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(1000),
