@@ -20,10 +20,11 @@ packages:
   audioplayers:
     dependency: transitive
     description:
-      name: audioplayers
-      sha256: "61583554386721772f9309f509e17712865b38565a903c761f96b1115a979282"
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/audioplayers"
+      ref: HEAD
+      resolved-ref: "4a6cfd955b11d77f38fc57f33fd1622d205e61e6"
+      url: "https://github.com/sasen98/audioplayers/"
+    source: git
     version: "4.1.0"
   audioplayers_android:
     dependency: transitive
@@ -172,10 +173,10 @@ packages:
     dependency: transitive
     description:
       name: http
-      sha256: "6aa2946395183537c8b880962d935877325d6a09a2867c3970c05c0fed6ac482"
+      sha256: "4c3f04bfb64d3efd508d06b41b825542f08122d30bda4933fb95c069d22a4fa3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.5"
+    version: "1.0.0"
   http_parser:
     dependency: transitive
     description:
@@ -485,5 +486,5 @@ packages:
     source: hosted
     version: "1.0.0"
 sdks:
-  dart: ">=3.0.0-0 <4.0.0"
-  flutter: ">=3.3.0"
+  dart: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"

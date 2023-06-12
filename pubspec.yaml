@@ -10,9 +10,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  audioplayers: ^4.1.0
+
+  audioplayers: 
+    git :
+      url : https://github.com/sasen98/audioplayers/
+      path: packages/audioplayers
 
   just_audio: ^0.9.34
+
   syncfusion_flutter_sliders: ^21.2.9
 
 dev_dependencies:
