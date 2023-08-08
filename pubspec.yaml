@@ -11,18 +11,13 @@ dependencies:
   flutter:
     sdk: flutter
 
-  audioplayers: 
-    git :
-      url : https://github.com/sasen98/audioplayers/
-      path: packages/audioplayers
+  audioplayers: ^5.0.0
 
   just_audio: ^0.9.34
 
-  syncfusion_flutter_sliders: ^21.2.9
+  syncfusion_flutter_sliders: ^22.2.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
-
-
