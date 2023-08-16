@@ -37,6 +37,7 @@ class VoiceMessage extends StatefulWidget {
     this.played = false,
     this.onPlay,
     this.isFullSCreen = false,
+    this.getController,
   }) : super(key: key);
 
   final String? audioSrc;
@@ -59,6 +60,7 @@ class VoiceMessage extends StatefulWidget {
   final bool played, me;
   Function()? onPlay;
   String Function(Duration duration)? formatDuration;
+  final void Function(AudioPlayer)? getController;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -117,6 +119,9 @@ class _VoiceMessageState extends State<VoiceMessage>
   Widget build(BuildContext context) {
     maxNoiseHeight = 6.w(context);
     noiseWidth = 28.5.w(context);
+    if (widget.getController != null) {
+      widget.getController!(_player);
+    }
     return _sizerChild(
       context,
     );
