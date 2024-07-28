@@ -11,11 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  audioplayers: ^5.0.0
+  audioplayers: ^6.0.0
 
-  just_audio: ^0.9.34
+  just_audio: ^0.9.39
 
-  syncfusion_flutter_sliders: ^22.2.8
+  syncfusion_flutter_sliders: ^26.2.5
 
 dev_dependencies:
   flutter_test:
