@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  audioplayers: ^5.0.0
+  audioplayers: ^6.0.0
 
   just_audio: ^0.9.34
 
